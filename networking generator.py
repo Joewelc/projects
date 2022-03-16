@@ -1,13 +1,13 @@
 userinput = input("I can help with Cisco commands, type 'help', or insert command: ").lower() # Command input
-err = ("NULL") 																			#The default error message
-
+err = ("NULL") 	
+																		#The default error message
 if userinput == ("ospf"):
 	ospfval = input("Insert an OSPF process number ")									# OSPF process input
 	ospf_area_ask = input("Insert ospf area ")											# OSPF area input
 	ospf_area = ("area " + ospf_area_ask)
 	ospf = ("Enable" "\n" "configure terminal" "\n" "router ospf " + ospfval + "\n" "network *IP subnet and wildcard mask* " + ospf_area)
 	print(ospf)
-	
+
 if userinput == ("rip"):
 	rip = ("Enable" "\n" "configure terminal" "\n" "router rip " "\n" "network *IP subnet and mask* " "\n" "version 2")
 	print(rip)
@@ -70,7 +70,7 @@ if userinput == ("port security"):
 	if port_sec_opt == ("sticky"): 														# Sticky mac address
 		port_sec_mac = ("switchport port-security mac-address sticky ")
 	port_security = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport port-security " "\n" + port_sec_maxmac + "\n" + str(port_sec_mac))
-	print(port_security)
+	print(port_security) 
 
 def main():								#Main user input loop
 	userinput = input("I can help with Cisco commands, type 'help', or insert command: ").lower() 
@@ -147,7 +147,21 @@ def main():								#Main user input loop
 		port_security = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport port-security " "\n" + port_sec_maxmac + "\n" + str(port_sec_mac))
 		print(port_security)
 
+	reset = input("Insert another command: ")
+	if reset == range["ospf, ip, stp, vlans, passwords, port security, cdp, rip"]:
+		if True:
+			reset = main()
+		if False:
+			reset = quit()
+
 if userinput == ("help"):
 	help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip ")
 	print(help)
 	main()
+
+reset = input("Insert another command: ")				#restarts script after a command			
+if reset == :
+	if True:
+		reset = main()
+	if False:
+		reset = quit()
