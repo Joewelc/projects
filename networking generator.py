@@ -72,11 +72,19 @@ if userinput == ("port security"):
 	port_security = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport port-security " "\n" + port_sec_maxmac + "\n" + str(port_sec_mac))
 	print(port_security) 
 
-if userinput == ("help"):								#Shows current available commands
-	help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip ")
+if userinput == ("speed"):
+	speed = ("Enable" "\n" "configure terminal" "\n" "interface */*" "speed 100")
+	print(speed)
+
+if userinput == ("duplex"):
+	duplex = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "duplex full")
+	print(duplex)
+
+if userinput == ("help"):	#Shows current available commands
+	help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed ")
 	print(help)
 
-def main():								#Main user input loop
+def main():		#Main loop starts
 	userinput = input("I can help with Cisco commands, type 'help', or insert command: ").lower() 
 	err = ("NULL") 																			
 
@@ -150,18 +158,29 @@ def main():								#Main user input loop
 			port_sec_mac = ("switchport port-security mac-address sticky ")
 		port_security = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport port-security " "\n" + port_sec_maxmac + "\n" + str(port_sec_mac))
 		print(port_security)
-	if userinput == ("help"):								#Shows current available commands
+
+	if userinput == ("speed"):
+		speed = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "speed 100")
+		print(speed)
+
+	if userinput == ("duplex"):
+		duplex = ("Enable" "\n" "configure terminal" "\n" "interface */*" "duplex full")
+		print(duplex)
+
+	if userinput == ("help"):						#Shows current available commands
 		help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip ")
 		print(help)
 
-	reset = input("Need another command? (Y/N) ").lower()				#reset command after loop			
+	reset = input("Need another command? (Y/N) ").lower()			#reset command after loop			
 	if reset == str("y"):
 		if True:
 			reset = main()
 		if False:
 			reset = quit()
 
-reset = input("Need another command? (Y/N) ").lower()				#restarts script after a command			
+# Main loop end
+
+reset = input("Need another command? (Y/N) ").lower()	#restarts or quits script after 1st command input		
 if reset == str("y"):
 	if True:
 		reset = main()
