@@ -147,20 +147,20 @@ def main():								#Main user input loop
 		port_security = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport port-security " "\n" + port_sec_maxmac + "\n" + str(port_sec_mac))
 		print(port_security)
 
-	reset = input("Insert another command: ")
-	if reset == range["ospf, ip, stp, vlans, passwords, port security, cdp, rip"]:
+	reset = input("Need another command? (Y/N) ").lower()				#restarts script after a command			
+	if reset == str("y"):
 		if True:
 			reset = main()
 		if False:
 			reset = quit()
 
-if userinput == ("help"):
+if userinput == ("help"):								#Shows current available commands
 	help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip ")
 	print(help)
 	main()
 
-reset = input("Insert another command: ")				#restarts script after a command			
-if reset == :
+reset = input("Need another command? (Y/N) ").lower()				#restarts script after a command			
+if reset == str("y"):
 	if True:
 		reset = main()
 	if False:
