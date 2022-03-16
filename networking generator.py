@@ -80,8 +80,12 @@ if userinput == ("duplex"):
 	duplex = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "duplex full")
 	print(duplex)
 
+if userinput == ("portfast"):
+	portfast = ("Enable" "\n" "configure terminal" "\n" "spanning-tree portfast default ")
+	print(portfast)
+
 if userinput == ("help"):	#Shows current available commands
-	help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed, duplex ")
+	help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed, duplex, portfast ")
 	print(help)
 
 def main():		#Main loop starts
@@ -167,8 +171,12 @@ def main():		#Main loop starts
 		duplex = ("Enable" "\n" "configure terminal" "\n" "interface */*" "duplex full")
 		print(duplex)
 
+	if userinput == ("portfast"):
+		portfast = ("Enable" "\n" "configure terminal" "\n" "spanning-tree portfast default ")
+		print(portfast)
+
 	if userinput == ("help"):		
-		help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed, duplex ")
+		help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed, duplex, portfast ")
 		print(help)
 
 	reset = input("Need another command? (Y/N) ").lower()			#reset command after loop			
