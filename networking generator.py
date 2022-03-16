@@ -1,6 +1,5 @@
 userinput = input("I can help with Cisco commands, type 'help', or insert command: ").lower() # Command input
-err = ("NULL") 	
-																		#The default error message
+err = ("NULL") 	#The default error message
 if userinput == ("ospf"):
 	ospfval = input("Insert an OSPF process number ")									# OSPF process input
 	ospf_area_ask = input("Insert ospf area ")											# OSPF area input
