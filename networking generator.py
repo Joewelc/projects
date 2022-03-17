@@ -1,5 +1,6 @@
 userinput = input("I can help with Cisco commands, type 'help', or insert command: ").lower() # Command input
-err = ("NULL") 	#The default error message
+err = ("NULL") 	#The default error message 
+
 if userinput == ("ospf"):
 	ospfval = input("Insert an OSPF process number ")									# OSPF process input
 	ospf_area_ask = input("Insert ospf area ")											# OSPF area input
@@ -84,11 +85,11 @@ if userinput == ("portfast"):
 	print(portfast)
 
 if userinput == ("help"):	#Shows current available commands
-	help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed, duplex, portfast ")
-	print(help)
+	helptext = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed, duplex, portfast ")
+	print(helptext)
 
 def main():		#Main loop starts
-	userinput = input("I can help with Cisco commands, type 'help', or insert command: ").lower() 
+	userinput = input("Great, type 'help' or insert command: ").lower() 
 	err = ("NULL") 																			
 
 	if userinput == ("ospf"):	
@@ -175,8 +176,8 @@ def main():		#Main loop starts
 		print(portfast)
 
 	if userinput == ("help"):		
-		help = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed, duplex, portfast ")
-		print(help)
+		helptext = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed, duplex, portfast ")
+		print(helptext)
 
 	reset = input("Need another command? (Y/N) ").lower()			#reset command after loop			
 	if reset == str("y"):
