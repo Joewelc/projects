@@ -47,7 +47,7 @@ if userinput == ("password"):
 	if secret_ask == str("y"):
 		secret_ask = input("Insert your secret password ")								# Secret pass input
 		secret_enable = ("enable secret " + secret_ask + "\n")
-	if secret_ask == str("n"):
+	elif secret_ask == str("n"):
 		secret_enable = ("")
 	password = ("Enable" "\n" "configure terminal" "\n" "enable password " + str(pass_input) + "\n" + str(secret_enable) + "service password-encryption")
 	print(password)
@@ -56,7 +56,7 @@ if userinput == ("cdp"):
 	cdp = input("Run or disable CDP? ").lower() 										# CDP run or disable
 	if cdp == str("run"):
 		cdp = ("cdp run" "\n" "Note: CDP is enabled by default")
-	if cdp == str("disable"):
+	elif cdp == str("disable"):
 		cdp = ("no cdp run")
 	print("Enable" "\n" "configure terminal" "\n" + cdp)
 
@@ -67,7 +67,7 @@ if userinput == ("port security"):
 	if port_sec_opt == ("mac"):
 		port_sec_mac_ask = input("Insert mac address: ") 								# Mac address
 		port_sec_mac = ("switchport port-security mac-address " + port_sec_mac_ask)
-	if port_sec_opt == ("sticky"): 														# Sticky mac address
+	elif port_sec_opt == ("sticky"): 														# Sticky mac address
 		port_sec_mac = ("switchport port-security mac-address sticky ")
 	port_security = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport port-security " "\n" + port_sec_maxmac + "\n" + str(port_sec_mac))
 	print(port_security) 
@@ -138,7 +138,7 @@ def main():		#Main loop starts
 		if secret_ask == str("y"):
 			secret_ask = input("Insert your secret password ")								
 			secret_enable = ("enable secret " + secret_ask + "\n")
-		if secret_ask == str("n"):
+		elif secret_ask == str("n"):
 			secret_enable = ("")
 		password = ("Enable" "\n" "configure terminal" "\n" "enable password " + str(pass_input) + "\n" + str(secret_enable) + "service password-encryption")
 		print(password)
@@ -147,7 +147,7 @@ def main():		#Main loop starts
 		cdp = input("Run or disable CDP? ").lower() 										
 		if cdp == str("run"):
 			cdp = ("cdp run" "\n" "Note: CDP is enabled by default")
-		if cdp == str("disable"):
+		elif cdp == str("disable"):
 			cdp = ("no cdp run")
 		print("Enable" "\n" "configure terminal" "\n" + cdp)
 
@@ -158,7 +158,7 @@ def main():		#Main loop starts
 		if port_sec_opt == ("mac"):
 			port_sec_mac_ask = input("Insert mac address: ") 								
 			port_sec_mac = ("switchport port-security mac-address " + port_sec_mac_ask)
-		if port_sec_opt == ("sticky"): 														
+		elif port_sec_opt == ("sticky"): 														
 			port_sec_mac = ("switchport port-security mac-address sticky ")
 		port_security = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport port-security " "\n" + port_sec_maxmac + "\n" + str(port_sec_mac))
 		print(port_security)
@@ -183,7 +183,7 @@ def main():		#Main loop starts
 	if reset == str("y"):
 		if True:
 			reset = main()
-		if False:
+		elif False:
 			reset = quit()
 
 # Main loop end
@@ -192,5 +192,5 @@ reset = input("Need another command? (Y/N) ").lower()	#restarts or quits script 
 if reset == str("y"):
 	if True:
 		reset = main()
-	if False:
+	elif False:
 		reset = quit()
