@@ -1,8 +1,20 @@
+def restart():
+	reset = input("Need another command? (Y/N): ").lower()		
+	if reset == str("y"):
+		if True:
+			reset = main()
+	elif reset == str("n"):
+		reset = print("Good bye.")
+		quit()
+	elif reset != str("y") or str("n"):
+		if True:
+			restart()
+
 def main():
 	userinput = input("Type 'help', or insert command: ").lower() 																		
 	if userinput == ("ospf"):	
-		ospfval = input("Insert an OSPF process number ")									
-		ospf_area_ask = input("Insert ospf area ")											
+		ospfval = input("Insert an OSPF process number: ")									
+		ospf_area_ask = input("Insert ospf area: ")											
 		ospf_area = ("area " + ospf_area_ask)
 		ospf = ("Enable" "\n" "configure terminal" "\n" "router ospf " + ospfval + "\n" "network *IP subnet and wildcard mask* " + ospf_area)
 		print(ospf)
@@ -16,7 +28,7 @@ def main():
 		print(stp)
 
 	if userinput == ("ip"):	
-		subnet = input("Insert your ip subnet ")											
+		subnet = input("Insert your ip subnet: ")											
 		submask = input("What is the subnet mask? 128, 64, 32, 16, etc ")					
 		if int(submask) == (128):
 			print("ip address " + str(subnet) + " 255.255.255.128")
@@ -36,15 +48,15 @@ def main():
 			print("ip address " + str(subnet) + " 255.255.255.0")
 
 	if userinput == ("vlan"):	
-		vlan_num = input("Insert a Vlan number ")											
+		vlan_num = input("Insert a Vlan number: ")											
 		vlan = ("Enable" "\n" "configure terminal" "\n" "vlan " + vlan_num + "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport access vlan " + vlan_num)
 		print(vlan)
 
 	if userinput == ("password"): 
-		pass_input = input("Insert your password ")											
-		secret_ask = input("Do you want a secret password? Y/N ").lower()
+		pass_input = input("Insert your password: ")											
+		secret_ask = input("Do you want a secret password? (Y/N): ").lower()
 		if secret_ask == str("y"):
-			secret_ask = input("Insert your secret password ")								
+			secret_ask = input("Insert your secret password: ")								
 			secret_enable = ("enable secret " + secret_ask + "\n")
 		elif secret_ask == str("n"):
 			secret_enable = ("")
@@ -86,13 +98,13 @@ def main():
 	if userinput == ("help"):		
 		helptext = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed, duplex, portfast ")
 		print(helptext)
+		main()
 
-	reset = input("Need another command? (Y/N) ").lower()		
-	if reset == str("y"):
+	if userinput != list[str("ospf"), str("ip"), str("stp"), str("vlans"), str("passwords"), str("port security"), str("cdp"), str("rip"), str("speed"), str("duplex"), str("portfast")]:
 		if True:
-			reset = main()
-	elif reset == str("n"):
-		reset = print("Good bye.")
-		quit()
+			print("I don't know that command")
+			restart()
+	
+	restart()	
 
 main()
