@@ -91,7 +91,8 @@ def main():
 	if reset == str("y"):
 		if True:
 			reset = main()
-	elif reset != str("y"):
-		reset = print("Good bye.") and quit()
+	elif reset == str("n"):
+		reset = print("Good bye.")
+		quit()
 
 main()
