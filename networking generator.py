@@ -1,5 +1,5 @@
 def main():
-	userinput = input("I can help with Cisco commands, type 'help', or insert command: ").lower() 																		
+	userinput = input("Type 'help', or insert command: ").lower() 																		
 	if userinput == ("ospf"):	
 		ospfval = input("Insert an OSPF process number ")									
 		ospf_area_ask = input("Insert ospf area ")											
