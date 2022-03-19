@@ -1,5 +1,5 @@
 def restart():
-	reset = input("Need another command? (Y/N): ").lower()		
+	reset = input("\n" "Need another command? (Y/N): ").lower()		
 	if reset == str("y"):
 		if True:
 			reset = main()
@@ -11,20 +11,33 @@ def restart():
 			restart()
 
 def main():
-	userinput = input("Type 'help', or insert command: ").lower() 																		
+	userinput = input("Type 'help', or insert command: ").lower() 											
+
+	def ospfprocess():
+		try:
+			process_variable = int(input("Insert an OSPF process number between 1 and 65535: "))
+			if process_variable >= 1 and process_variable <= 65535:
+				return str(int(process_variable))
+		except ValueError:
+			print("Please use a number between 1 and 65535")
+			ospfprocess()
+
 	if userinput == ("ospf"):	
-		ospfval = input("Insert an OSPF process number: ")									
-		ospf_area_ask = input("Insert ospf area: ")											
-		ospf_area = ("area " + ospf_area_ask)
-		ospf = ("Enable" "\n" "configure terminal" "\n" "router ospf " + ospfval + "\n" "network *IP subnet and wildcard mask* " + ospf_area)
-		print(ospf)
+		if userinput == ("ospf"):	
+			ospfval = ospfprocess()						
+			ospf_area_ask = input("Insert ospf area: ")		
+			ospf_net = input("Insert the ospf network: ")	
+			ospf_mask = input("Insert the wildcard mask ")								
+			ospf_area = ("area " + ospf_area_ask)
+			ospf = ("\n" "Enable" "\n" "configure terminal" "\n" "router ospf " + str(ospfval) + "\n" "network " +ospf_net + " " + ospf_mask + " " +  ospf_area)
+			print(ospf)
 		
 	if userinput == ("rip"): 	
-		rip = ("Enable" "\n" "configure terminal" "\n" "router rip " "\n" "network *IP subnet and mask* " "\n" "version 2")
+		rip = ("\n" "Enable" "\n" "configure terminal" "\n" "router rip " "\n" "network *IP subnet and mask* " "\n" "version 2" "\n")
 		print(rip)
 
 	if userinput == ("stp"): 	
-		stp = ("Enable" "\n" "configure terminal" "\n" "spanning-tree mode rapid-pvst" "\n" "spanning tree vlan 1 root primary")
+		stp = ("\n" "Enable" "\n" "configure terminal" "\n" "spanning-tree mode rapid-pvst" "\n" "spanning tree vlan 1 root primary" "\n")
 		print(stp)
 
 	if userinput == ("ip"):	
@@ -45,7 +58,7 @@ def main():
 		elif int(submask) == (2):
 			print("ip address " + str(subnet) + " 255.255.255.254")
 		elif int(submask) == (0):
-			print("ip address " + str(subnet) + " 255.255.255.0")
+			print("\n" "ip address " + str(subnet) + " 255.255.255.0" "\n")
 
 	if userinput == ("vlan"):	
 		vlan_num = input("Insert a Vlan number: ")											
@@ -84,11 +97,11 @@ def main():
 		print(port_security)
 
 	if userinput == ("speed"):	
-		speed = ("Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "speed 100")
+		speed = ("\n" "Enable" "\n" "configure terminal" "\n" "interface */*" "\n" "speed 100" "\n")
 		print(speed)
 
 	if userinput == ("duplex"):	
-		duplex = ("Enable" "\n" "configure terminal" "\n" "interface */*" "duplex full")
+		duplex = ("\n" "Enable" "\n" "configure terminal" "\n" "interface */*" "duplex full" "\n")
 		print(duplex)
 
 	if userinput == ("portfast"):
@@ -96,13 +109,12 @@ def main():
 		print(portfast)
 
 	if userinput == ("help"):		
-		helptext = ("The commands include: ospf, ip, stp, vlans, passwords, port security, cdp, rip, speed, duplex, portfast ")
+		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast " "\n")
 		print(helptext)
 		main()
 
-	if userinput != list[str("ospf"), str("ip"), str("stp"), str("vlans"), str("passwords"), str("port security"), str("cdp"), str("rip"), str("speed"), str("duplex"), str("portfast")]:
+	if userinput != list[str("ospf"), str("ip"), str("stp"), str("vlan"), str("passwords"), str("port security"), str("cdp"), str("rip"), str("speed"), str("duplex"), str("portfast"), int()]:
 		if True:
-			print("I don't know that command")
 			restart()
 	
 	restart()	
