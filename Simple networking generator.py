@@ -33,7 +33,9 @@ def main():
 		
 	if userinput == ("rip"):
 		ripnetwork = input("Insert ip subnet: ")
-		rip = ("\n" "enable" "\n" "configure terminal" "\n" "router rip " "\n" "network " + str(ripnetwork) + "\n" "version 2")
+		ripver = input("RIP version 1 or 2? ")
+		ripver = ("Version " + str(ripver))
+		rip = ("\n" "enable" "\n" "configure terminal" "\n" "router rip " "\n" "network " + str(ripnetwork) + "\n" + str(ripver))
 		print(rip)
 
 	if userinput == ("stp"): 	
@@ -60,10 +62,19 @@ def main():
 		elif int(submask) == (0):
 			print("\n" "ip address " + str(subnet) + " 255.255.255.0" "\n")
 
+	def vlaninput():
+		try:
+			vlan_num = int(input("Insert a VLAN ID between 1-1005: "))
+			if vlan_num >= 1 and vlan_num <= 1005:
+				return str(vlan_num)
+		except (ValueError, TypeError, AttributeError):
+			print("Invalid inputs, try again ")
+			vlaninput()
+
 	if userinput == ("vlan"):	
-		vlan_num = input("Insert a Vlan number: ")											
-		vlan = ("enable" "\n" "configure terminal" "\n" "vlan " + vlan_num + "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport access vlan " + vlan_num)
-		print(vlan)
+			vlan_num = vlaninput()											
+			vlan = ("\n" "enable" "\n" "configure terminal" "\n" "vlan " + str(vlan_num) + "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport access vlan " + str(vlan_num))
+			print(vlan)
 
 	if userinput == ("password"): 
 		pass_input = input("Insert your password: ")											
@@ -101,6 +112,7 @@ def main():
 		print(speed)
 
 	if userinput == ("duplex"):	
+		duplexask = input("Full of half")
 		duplex = ("\n" "enable" "\n" "configure terminal" "\n" "interface */*" "duplex full" "\n")
 		print(duplex)
 
