@@ -112,8 +112,8 @@ def main():
 		print(speed)
 
 	if userinput == ("duplex"):	
-		duplexask = input("Full of half")
-		duplex = ("\n" "enable" "\n" "configure terminal" "\n" "interface */*" "duplex full" "\n")
+		duplexask = input("Full or half")
+		duplex = ("\n" "enable" "\n" "configure terminal" "\n" "interface */*" "duplex " + str(duplexask) + "\n")
 		print(duplex)
 
 	if userinput == ("portfast"):
