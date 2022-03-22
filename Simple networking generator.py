@@ -160,12 +160,73 @@ def main():
 					acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]) + " " + str(acl_list[4]) + " " + str(acl_list[5]))
 					print(acl)	
 
+	def natcreator():
+			try:
+				nat_ask = input("Create pool, or Translation?: ").lower()
+				if nat_ask == str("pool"):
+					nat_pool = input("Input the name of the pool: ").lower()
+					nat_pool_start = input("Starting address: ")
+					nat_pool_end = input("Ending address: ")
+					nat_netmask = input("Insert the mask: ")
+					pool_total = ("enable" "\n" "configure terminal" "\n" "ip nat " + str(nat_pool) + " " + str(nat_pool_start) + " " + str(nat_pool_end) + " " + str(nat_netmask))
+					return  str(nat_ask), str(pool_total)
+				if nat_ask == str("translation"):
+					nat_trans_ask = input("Input the source (list or static): ").lower()
+					if nat_trans_ask == str("list"):
+						nat_list = input("Input the ACL number: ")
+						nat_trans_ask = input("Interface or pool?: ").lower()
+						if nat_trans_ask == str("interface"): 
+							nat_overload = input("Do you want to enable PAT? (Y/N): ").lower()
+							if nat_overload == str("y"):
+								nat_overload = str("overload")
+								nat_list_translation = ("enable" "\n" "configure terminal" "\n" "ip nat inside source list " + str(nat_list) + "interface <TYPE */*> " + str(nat_overload))
+								return str(nat_ask), str(nat_list_translation)
+							elif nat_overload == str("n"):
+								nat_overload = str(" ")
+								nat_list_translation = ("enable" "\n" "configure terminal" "\n" "ip nat inside source list " + str(nat_list) + "interface <TYPE */*> " + str(nat_overload))
+								return str(nat_ask), str(nat_list_translation)
+						elif nat_trans_ask == str("pool"):
+							nat_pool_name = input("Insert pool name: ")
+							nat_pool = str(nat_pool_name)
+							nat_overload = input("Do you want to enable PAT? (Y/N): ").lower()
+							if nat_overload == str("y"):
+								nat_overload = str("overload")
+								nat_list_translation = ("enable" "\n" "configure terminal" "\n" "ip nat inside source list " + str(nat_list) + "pool " + str(nat_pool) + " " + str(nat_overload))
+								return str(nat_ask), str(nat_list_translation)
+							elif nat_overload == str("n"):
+								nat_overload = str(" ")
+								nat_list_translation = ("enable" "\n" "configure terminal" "\n" "ip nat inside source list " + str(nat_list) + "pool " + str(nat_pool) + " " + str(nat_overload))
+								return str(nat_ask), str(nat_list_translation)
+					elif nat_trans_ask == str("static"):
+						nat_list_inside = input("Insert the inside local address: ")
+						nat_list_outside = input("Insert inside global address: ")
+						nat_list_translation = ("enable" "\n" "configure terminal" "\n" "ip nat inside source static " + str(nat_list_inside) + " " + str(nat_list_outside))
+						return str(nat_ask), str(nat_list_translation)
+				if nat_ask != str("pool"):
+					print("please input 'pool' or 'translation'")
+					natcreator()
+				if nat_ask != str("translation"):
+					print("please input 'pool' or 'translation'")
+					natcreator()
+			except (ValueError, TypeError, AttributeError):
+				print("Invalid inputs, try again ")
+				aclcreator()
+
+	if userinput == ("nat"):	
+			nat = natcreator()
+			if nat[0] == str("pool"):
+				nat = str(nat[1])
+				print(nat)
+			elif nat[0] == str("translation"):
+				nat = str(nat[1])
+				print(nat)
+			
 	if userinput == ("help"):		
-		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast, acl " "\n")
+		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast, acl, nat " "\n")
 		print(helptext)
 		main()
 
-	if userinput != list[str("ospf"), str("ip"), str("stp"), str("vlan"), str("passwords"), str("port security"), str("cdp"), str("rip"), str("speed"), str("duplex"), str("portfast"), str("acl")]:
+	if userinput != list[str("ospf"), str("ip"), str("stp"), str("vlan"), str("passwords"), str("port security"), str("cdp"), str("rip"), str("speed"), str("duplex"), str("portfast"), str("acl"), str("nat")]:
 		if True:
 			restart()
 	
