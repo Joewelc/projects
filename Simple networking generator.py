@@ -161,11 +161,11 @@ def main():
 					print(acl)	
 
 	if userinput == ("help"):		
-		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast " "\n")
+		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast, acl " "\n")
 		print(helptext)
 		main()
 
-	if userinput != list[str("ospf"), str("ip"), str("stp"), str("vlan"), str("passwords"), str("port security"), str("cdp"), str("rip"), str("speed"), str("duplex"), str("portfast"), int()]:
+	if userinput != list[str("ospf"), str("ip"), str("stp"), str("vlan"), str("passwords"), str("port security"), str("cdp"), str("rip"), str("speed"), str("duplex"), str("portfast"), str("acl")]:
 		if True:
 			restart()
 	
