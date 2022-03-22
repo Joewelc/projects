@@ -120,6 +120,46 @@ def main():
 		portfast = ("enable" "\n" "configure terminal" "\n" "spanning-tree portfast default ")
 		print(portfast)
 
+	def aclcreator():
+		try:
+			acl_number = int(input("Input an access list number (1-99) or (100-199): "))
+			acl_arguement = input("Permit or Deny?: ")
+			if acl_number <= 99:
+				acl_address = input("Input the ip address of network: ")
+				acl_wild = input("Input the wildcard mask: ")
+				return int(acl_number), str(acl_arguement), str(acl_address), str(acl_wild)
+			elif acl_number <= 199:
+				acl_type = input("Which protocol? (ip, tcp): ").lower()
+				if acl_type == str("ip"):
+					acl_source = input("Input a host source address: ")
+					acl_dest = input("Input a destination address: ")
+					acl_dest_wild = input("Input the destination wildcard: ")
+					return int(acl_number), str(acl_arguement), str(acl_type), str(acl_source), str(acl_dest), str(acl_dest_wild)
+				if acl_type == str("tcp"):
+					acl_source = input("Input a host source address: ")
+					acl_source_wild = input("Input the source wildcard ")
+					acl_dest = input("Input a destination address: ")
+					acl_dest_wild = input("Input the destination wildcard: ")
+					acl_tcp_port = input("Which port? (ftp, pop3, smtp, telnet, www): ")
+					acl_tcp_port = ("eq " + acl_tcp_port)
+					return int(acl_number), str(acl_arguement), str(acl_type), str(acl_source), str(acl_source_wild), str(acl_dest), str(acl_dest_wild), str(acl_tcp_port), 
+		except (ValueError, TypeError, AttributeError):
+			print("Invalid inputs, try again ")
+			aclcreator()
+
+	if userinput == ("acl"):	
+			acl_list = aclcreator()
+			if acl_list[0] <= 99:
+				acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]) + "\n")
+				print(acl)
+			elif acl_list[0] <= 199:
+				if acl_list[2] == str("tcp"):
+					acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]) + " " + str(acl_list[4]) + " " + str(acl_list[5]) + " " + str(acl_list[6]) + " " + str(acl_list[7]) + "\n")
+					print(acl)
+				elif acl_list[2] == str("ip"):
+					acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]) + " " + str(acl_list[4]) + " " + str(acl_list[5]) + "\n")
+					print(acl)	
+
 	if userinput == ("help"):		
 		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast " "\n")
 		print(helptext)
