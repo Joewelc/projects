@@ -150,14 +150,14 @@ def main():
 	if userinput == ("acl"):	
 			acl_list = aclcreator()
 			if acl_list[0] <= 99:
-				acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]) + "\n")
+				acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]))
 				print(acl)
 			elif acl_list[0] <= 199:
 				if acl_list[2] == str("tcp"):
-					acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]) + " " + str(acl_list[4]) + " " + str(acl_list[5]) + " " + str(acl_list[6]) + " " + str(acl_list[7]) + "\n")
+					acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]) + " " + str(acl_list[4]) + " " + str(acl_list[5]) + " " + str(acl_list[6]) + " " + str(acl_list[7]))
 					print(acl)
 				elif acl_list[2] == str("ip"):
-					acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]) + " " + str(acl_list[4]) + " " + str(acl_list[5]) + "\n")
+					acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]) + " " + str(acl_list[4]) + " " + str(acl_list[5]))
 					print(acl)	
 
 	if userinput == ("help"):		
