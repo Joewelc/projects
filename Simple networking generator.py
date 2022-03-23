@@ -170,7 +170,7 @@ def main():
 					nat_netmask = input("Insert the mask: ")
 					pool_total = ("enable" "\n" "configure terminal" "\n" "ip nat " + str(nat_pool) + " " + str(nat_pool_start) + " " + str(nat_pool_end) + " " + str(nat_netmask))
 					return  str(nat_ask), str(pool_total)
-				if nat_ask == str("translation"):
+				elif nat_ask == str("translation"):
 					nat_trans_ask = input("Input the source (list or static): ").lower()
 					if nat_trans_ask == str("list"):
 						nat_list = input("Input the ACL number: ")
@@ -205,7 +205,7 @@ def main():
 				if nat_ask != str("pool"):
 					print("please input 'pool' or 'translation'")
 					natcreator()
-				if nat_ask != str("translation"):
+				elif nat_ask != str("translation"):
 					print("please input 'pool' or 'translation'")
 					natcreator()
 			except (ValueError, TypeError, AttributeError):
