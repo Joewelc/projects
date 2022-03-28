@@ -12,7 +12,6 @@ def restart():
 
 def main():
 	userinput = input("Type 'help', or insert command: ").lower() 											
-
 	def ospfprocess():
 		try:
 			process_variable = int(input("Insert an OSPF process number between 1 and 65535: "))
@@ -221,12 +220,29 @@ def main():
 				nat = str(nat[1])
 				print(nat)
 			
+	def dhcpcreator():
+			try:
+				dhcp_pool_name = input("Input the name for the dhcp pool: ")
+				dhcp_default_route = input("Input the default router IP: ")
+				dhcp_dns = input("Input the name server address: ")
+				dns_network = input("Input the subnet IP: ")
+				dns_network_mask = input("Input the subnet mask: ")
+				dhcp_total = ("\n" "enable" "\n" "configure terminal" "\n" "ip dhcp pool " + str(dhcp_pool_name) + "\n" "default-router " + str(dhcp_default_route) + "\n" + "dns-server " + str(dhcp_dns) + "\n" "network " + str(dns_network) + " " + str(dns_network_mask))
+				return str(dhcp_total)
+			except (ValueError, TypeError, AttributeError):
+				print("Invalid inputs, try again ")
+				dhcpcreator()
+
+	if userinput == ("dhcp"):	
+			dhcp = dhcpcreator()
+			print(dhcp)
+
 	if userinput == ("help"):		
-		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast, acl, nat " "\n")
+		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast, acl, nat, dhcp " "\n")
 		print(helptext)
 		main()
 
-	if userinput != list[str("ospf"), str("ip"), str("stp"), str("vlan"), str("passwords"), str("port security"), str("cdp"), str("rip"), str("speed"), str("duplex"), str("portfast"), str("acl"), str("nat")]:
+	if userinput != list[str("ospf"), str("ip"), str("stp"), str("vlan"), str("passwords"), str("port security"), str("cdp"), str("rip"), str("speed"), str("duplex"), str("portfast"), str("acl"), str("nat"), str("dhcp")]:
 		if True:
 			restart()
 	
