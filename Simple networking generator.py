@@ -64,15 +64,18 @@ def main():
 	def vlaninput():
 		try:
 			vlan_num = int(input("Insert a VLAN ID between 1-1005: "))
+			vlan_int = input("Insert the interface type (serial, gig, fa, eth, etc): ")
+			vlan_int = "interface " + str(vlan_int)
+			vlan_int_num = input("Insert the interface number (*/*): ")
 			if vlan_num >= 1 and vlan_num <= 1005:
-				return str(vlan_num)
+				return str(vlan_num), str(vlan_int), str(vlan_int_num)
 		except (ValueError, TypeError, AttributeError):
 			print("Invalid inputs, try again ")
 			vlaninput()
 
 	if userinput == ("vlan"):	
-			vlan_num = vlaninput()											
-			vlan = ("\n" "enable" "\n" "configure terminal" "\n" "vlan " + str(vlan_num) + "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport access vlan " + str(vlan_num))
+			vlan_ret = vlaninput()											
+			vlan = ("\n" "enable" "\n" "configure terminal" "\n" "vlan " + str(vlan_ret[0]) + "\n" + str(vlan_ret[1]) + " " + str(vlan_ret[2]) + "\n" "switchport mode access" "\n" "switchport access vlan " + str(vlan_ret[0]))
 			print(vlan)
 
 	if userinput == ("password"): 
