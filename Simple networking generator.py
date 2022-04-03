@@ -64,9 +64,9 @@ def main():
 	def vlaninput():
 		try:
 			vlan_num = int(input("Insert a VLAN ID between 1-1005: "))
-			vlan_int = input("Insert the interface type (serial, gig, fa, eth, etc): ")
+			vlan_int = input("Insert the interface type (serial, gig, fa, eth, etc): ").lower()
 			vlan_int = "interface " + str(vlan_int)
-			vlan_int_num = input("Insert the interface number (*/*): ")
+			vlan_int_num = input("Insert the interface number (*/*): ").lower()
 			if vlan_num >= 1 and vlan_num <= 1005:
 				return str(vlan_num), str(vlan_int), str(vlan_int_num)
 		except (ValueError, TypeError, AttributeError):
@@ -100,22 +100,31 @@ def main():
 	if userinput == ("port security"):	
 		port_sec_max = input("Max number of mac addresses allowed: ") 						
 		port_sec_maxmac = ("switchport port-security maximum " + str(port_sec_max))
-		port_sec_opt = input("Mac or Sticky? ").lower()										
+		port_sec_opt = input("Mac or Sticky? ").lower()	
+		port_sec_int = input("Insert the interface type (serial, gig, fa, eth, etc): ").lower()	
+		port_sec_int = "interface " + str(port_sec_int)
+		port_sec_int_num = input("Insert the interface number (*/*): ").lower()							
 		if port_sec_opt == ("mac"):
 			port_sec_mac_ask = input("Insert mac address: ") 								
 			port_sec_mac = ("switchport port-security mac-address " + port_sec_mac_ask)
 		elif port_sec_opt == ("sticky"): 														
 			port_sec_mac = ("switchport port-security mac-address sticky ")
-		port_security = ("\n" "enable" "\n" "configure terminal" "\n" "interface */*" "\n" "switchport mode access" "\n" "switchport port-security " "\n" + port_sec_maxmac + "\n" + str(port_sec_mac))
+		port_security = ("\n" "enable" "\n" "configure terminal" "\n" + str(port_sec_int) + str(port_sec_int_num) + "\n" "switchport mode access" "\n" "switchport port-security " "\n" + port_sec_maxmac + "\n" + str(port_sec_mac))
 		print(port_security)
 
 	if userinput == ("speed"):	
-		speed = ("\n" "enable" "\n" "configure terminal" "\n" "interface */*" "\n" "speed 100" "\n")
+		speed_int = input("Insert the interface type (serial, gig, fa, eth, etc): ").lower()
+		speed_int = "interface " + str(speed_int)
+		speed_int_num = input("Insert the interface number (*/*): ").lower()
+		speed = ("\n" "enable" "\n" "configure terminal" "\n" + str(speed_int) + " " + str(speed_int_num) + "\n" "speed 100")
 		print(speed)
 
 	if userinput == ("duplex"):	
-		duplexask = input("Full or half")
-		duplex = ("\n" "enable" "\n" "configure terminal" "\n" "interface */*" "duplex " + str(duplexask) + "\n")
+		duplexask = input("Full or half: ").lower()
+		duplex_int = input("Insert the interface type (serial, gig, fa, eth, etc): ").lower()
+		duplex_int = "interface " + str(duplex_int)
+		duplex_int_num = input("Insert the interface number (*/*): ").lower()
+		duplex = ("\n" "enable" "\n" "configure terminal" "\n" + str(duplex_int) + " " + str(duplex_int_num) + "\n" "duplex " + str(duplexask) + "\n")
 		print(duplex)
 
 	if userinput == ("portfast"):
