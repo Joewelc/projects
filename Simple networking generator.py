@@ -1,4 +1,4 @@
-import pyperclip as copypaste
+import pyperclip as copypaste #pip install pyperclip
 
 def restart():
 	reset = input("\n" "Need another command? (Y/N): ").lower()		
@@ -321,7 +321,7 @@ def main():
 				copypaste.copy(dhcp)
 			elif copypaste_ask == str("n"):
 				restart()
-				
+
 	if userinput == ("help"):		
 		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast, acl, nat, dhcp " "\n")
 		print(helptext)
