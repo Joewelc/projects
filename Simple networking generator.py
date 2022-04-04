@@ -1,3 +1,5 @@
+import pyperclip as copypaste
+
 def restart():
 	reset = input("\n" "Need another command? (Y/N): ").lower()		
 	if reset == str("y"):
@@ -29,37 +31,58 @@ def main():
 		ospf_mask = input("Insert the wildcard mask ")								
 		ospf = ("\n" "enable" "\n" "configure terminal" "\n" "router ospf " + str(ospf_pro_and_area[0]) + "\n" "network " + ospf_net + " " + ospf_mask + " " + "area " + str(ospf_pro_and_area[1]))
 		print(ospf)
-		
+		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+		if copypaste_ask == str("y"):
+			copypaste.copy(ospf)
+		elif copypaste_ask == str("n"):
+			restart()
+
 	if userinput == ("rip"):
 		ripnetwork = input("Insert ip subnet: ")
 		ripver = input("RIP version 1 or 2? ")
 		ripver = ("Version " + str(ripver))
 		rip = ("\n" "enable" "\n" "configure terminal" "\n" "router rip " "\n" "network " + str(ripnetwork) + "\n" + str(ripver))
 		print(rip)
+		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+		if copypaste_ask == str("y"):
+			copypaste.copy(rip)
+		elif copypaste_ask == str("n"):
+			restart()
 
 	if userinput == ("stp"): 	
 		stp = ("\n" "enable" "\n" "configure terminal" "\n" "spanning-tree mode rapid-pvst" "\n" "spanning tree vlan 1 root primary" "\n")
 		print(stp)
+		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+		if copypaste_ask == str("y"):
+			copypaste.copy(stp)
+		elif copypaste_ask == str("n"):
+			restart()
 
 	if userinput == ("ip"):	
 		subnet = input("Insert your ip subnet: ")											
 		submask = input("What is the subnet mask? 128, 64, 32, 16, etc ")					
 		if int(submask) == (128):
-			print("ip address " + str(subnet) + " 255.255.255.128")
+			ip = ("ip address " + str(subnet) + " 255.255.255.128")
 		elif int(submask) == (64):
-			print("ip address " + str(subnet) + " 255.255.255.192")
+			ip = ("ip address " + str(subnet) + " 255.255.255.192")
 		elif int(submask) == (32):
-			print("ip address " + str(subnet) + " 255.255.255.224")
+			ip = ("ip address " + str(subnet) + " 255.255.255.224")
 		elif int(submask) == (16):
-			print("ip address " + str(subnet) + " 255.255.255.240")
+			ip = ("ip address " + str(subnet) + " 255.255.255.240")
 		elif int(submask) == (8):
-			print("ip address " + str(subnet) + " 255.255.255.248")
+			ip = ("ip address " + str(subnet) + " 255.255.255.248")
 		elif int(submask) == (4):
-			print("ip address " + str(subnet) + " 255.255.255.252")
+			ip = ("ip address " + str(subnet) + " 255.255.255.252")
 		elif int(submask) == (2):
-			print("ip address " + str(subnet) + " 255.255.255.254")
+			ip = ("ip address " + str(subnet) + " 255.255.255.254")
 		elif int(submask) == (0):
-			print("\n" "ip address " + str(subnet) + " 255.255.255.0" "\n")
+			ip = ("ip address " + str(subnet) + " 255.255.255.0")
+		print(ip)
+		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+		if copypaste_ask == str("y"):
+			copypaste.copy(ip)
+		elif copypaste_ask == str("n"):
+			restart()	
 
 	def vlaninput():
 		try:
@@ -77,6 +100,11 @@ def main():
 			vlan_ret = vlaninput()											
 			vlan = ("\n" "enable" "\n" "configure terminal" "\n" "vlan " + str(vlan_ret[0]) + "\n" + str(vlan_ret[1]) + " " + str(vlan_ret[2]) + "\n" "switchport mode access" "\n" "switchport access vlan " + str(vlan_ret[0]))
 			print(vlan)
+			copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+			if copypaste_ask == str("y"):
+				copypaste.copy(vlan)
+			elif copypaste_ask == str("n"):
+				restart()
 
 	if userinput == ("password"): 
 		pass_input = input("Insert your password: ")											
@@ -88,6 +116,11 @@ def main():
 			secret_enable = ("")
 		password = ("\n" "enable" "\n" "configure terminal" "\n" "enable password " + str(pass_input) + "\n" + str(secret_enable) + "service password-encryption")
 		print(password)
+		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+		if copypaste_ask == str("y"):
+			copypaste.copy(password)
+		elif copypaste_ask == str("n"):
+			restart()
 
 	if userinput == ("cdp"): 
 		cdp = input("Run or disable CDP? ").lower() 										
@@ -96,6 +129,11 @@ def main():
 		elif cdp == str("disable"):
 			cdp = ("no cdp run")
 		print("\n" "enable" "\n" "configure terminal" "\n" + cdp)
+		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+		if copypaste_ask == str("y"):
+			copypaste.copy(cdp)
+		elif copypaste_ask == str("n"):
+			restart()
 
 	if userinput == ("port security"):	
 		port_sec_max = input("Max number of mac addresses allowed: ") 						
@@ -111,6 +149,11 @@ def main():
 			port_sec_mac = ("switchport port-security mac-address sticky ")
 		port_security = ("\n" "enable" "\n" "configure terminal" "\n" + str(port_sec_int) + str(port_sec_int_num) + "\n" "switchport mode access" "\n" "switchport port-security " "\n" + port_sec_maxmac + "\n" + str(port_sec_mac))
 		print(port_security)
+		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+		if copypaste_ask == str("y"):
+			copypaste.copy(port_security)
+		elif copypaste_ask == str("n"):
+			restart()
 
 	if userinput == ("speed"):	
 		speed_int = input("Insert the interface type (serial, gig, fa, eth, etc): ").lower()
@@ -118,6 +161,11 @@ def main():
 		speed_int_num = input("Insert the interface number (*/*): ").lower()
 		speed = ("\n" "enable" "\n" "configure terminal" "\n" + str(speed_int) + " " + str(speed_int_num) + "\n" "speed 100")
 		print(speed)
+		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+		if copypaste_ask == str("y"):
+			copypaste.copy(speed)
+		elif copypaste_ask == str("n"):
+			restart()
 
 	if userinput == ("duplex"):	
 		duplexask = input("Full or half: ").lower()
@@ -126,10 +174,20 @@ def main():
 		duplex_int_num = input("Insert the interface number (*/*): ").lower()
 		duplex = ("\n" "enable" "\n" "configure terminal" "\n" + str(duplex_int) + " " + str(duplex_int_num) + "\n" "duplex " + str(duplexask) + "\n")
 		print(duplex)
+		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+		if copypaste_ask == str("y"):
+			copypaste.copy(duplex)
+		elif copypaste_ask == str("n"):
+			restart()
 
 	if userinput == ("portfast"):
 		portfast = ("enable" "\n" "configure terminal" "\n" "spanning-tree portfast default ")
 		print(portfast)
+		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+		if copypaste_ask == str("y"):
+			copypaste.copy(portfast)
+		elif copypaste_ask == str("n"):
+			restart()
 
 	def aclcreator():
 		try:
@@ -170,6 +228,11 @@ def main():
 				elif acl_list[2] == str("ip"):
 					acl = ("\n" "enable" "\n" "configure terminal" "\n" "access-list " + str(int(acl_list[0])) + " " + str(acl_list[1]) + " " + str(acl_list[2]) + " " + str(acl_list[3]) + " " + str(acl_list[4]) + " " + str(acl_list[5]))
 					print(acl)	
+			copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+			if copypaste_ask == str("y"):
+				copypaste.copy(acl)
+			elif copypaste_ask == str("n"):
+				restart()
 
 	def natcreator():
 			try:
@@ -231,6 +294,11 @@ def main():
 			elif nat[0] == str("translation"):
 				nat = str(nat[1])
 				print(nat)
+			copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+			if copypaste_ask == str("y"):
+				copypaste.copy(nat)
+			elif copypaste_ask == str("n"):
+				restart()
 			
 	def dhcpcreator():
 			try:
@@ -248,7 +316,12 @@ def main():
 	if userinput == ("dhcp"):	
 			dhcp = dhcpcreator()
 			print(dhcp)
-
+			copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
+			if copypaste_ask == str("y"):
+				copypaste.copy(dhcp)
+			elif copypaste_ask == str("n"):
+				restart()
+				
 	if userinput == ("help"):		
 		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast, acl, nat, dhcp " "\n")
 		print(helptext)
