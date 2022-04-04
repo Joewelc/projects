@@ -172,7 +172,7 @@ def main():
 		duplex_int = input("Insert the interface type (serial, gig, fa, eth, etc): ").lower()
 		duplex_int = "interface " + str(duplex_int)
 		duplex_int_num = input("Insert the interface number (*/*): ").lower()
-		duplex = ("\n" "enable" "\n" "configure terminal" "\n" + str(duplex_int) + " " + str(duplex_int_num) + "\n" "duplex " + str(duplexask) + "\n")
+		duplex = ("\n" "enable" "\n" "configure terminal" "\n" + str(duplex_int) + " " + str(duplex_int_num) + "\n" "duplex " + str(duplexask))
 		print(duplex)
 		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
 		if copypaste_ask == str("y"):
