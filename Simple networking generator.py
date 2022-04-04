@@ -24,7 +24,6 @@ def main():
 		except (ValueError, TypeError, AttributeError):
 			print("Invalid inputs, try again ")
 			ospfprocess()
-
 	if userinput == ("ospf"):	
 		ospf_pro_and_area = ospfprocess()							
 		ospf_net = input("Insert the ospf network: ")	
@@ -36,7 +35,6 @@ def main():
 			copypaste.copy(ospf)
 		elif copypaste_ask == str("n"):
 			restart()
-
 	if userinput == ("rip"):
 		ripnetwork = input("Insert ip subnet: ")
 		ripver = input("RIP version 1 or 2? ")
@@ -48,7 +46,6 @@ def main():
 			copypaste.copy(rip)
 		elif copypaste_ask == str("n"):
 			restart()
-
 	if userinput == ("stp"): 	
 		stp = ("\n" "enable" "\n" "configure terminal" "\n" "spanning-tree mode rapid-pvst" "\n" "spanning tree vlan 1 root primary" "\n")
 		print(stp)
@@ -57,7 +54,6 @@ def main():
 			copypaste.copy(stp)
 		elif copypaste_ask == str("n"):
 			restart()
-
 	if userinput == ("ip"):	
 		subnet = input("Insert your ip subnet: ")											
 		submask = input("What is the subnet mask? 128, 64, 32, 16, etc ")					
@@ -83,7 +79,6 @@ def main():
 			copypaste.copy(ip)
 		elif copypaste_ask == str("n"):
 			restart()	
-
 	def vlaninput():
 		try:
 			vlan_num = int(input("Insert a VLAN ID between 1-1005: "))
@@ -95,7 +90,6 @@ def main():
 		except (ValueError, TypeError, AttributeError):
 			print("Invalid inputs, try again ")
 			vlaninput()
-
 	if userinput == ("vlan"):	
 			vlan_ret = vlaninput()											
 			vlan = ("\n" "enable" "\n" "configure terminal" "\n" "vlan " + str(vlan_ret[0]) + "\n" + str(vlan_ret[1]) + " " + str(vlan_ret[2]) + "\n" "switchport mode access" "\n" "switchport access vlan " + str(vlan_ret[0]))
@@ -105,7 +99,6 @@ def main():
 				copypaste.copy(vlan)
 			elif copypaste_ask == str("n"):
 				restart()
-
 	if userinput == ("password"): 
 		pass_input = input("Insert your password: ")											
 		secret_ask = input("Do you want a secret password? (Y/N): ").lower()
@@ -121,20 +114,18 @@ def main():
 			copypaste.copy(password)
 		elif copypaste_ask == str("n"):
 			restart()
-
 	if userinput == ("cdp"): 
 		cdp = input("Run or disable CDP? ").lower() 										
 		if cdp == str("run"):
-			cdp = ("cdp run" "\n" "Note: CDP is enabled by default")
+			cdp = ("cdp run")
 		elif cdp == str("disable"):
 			cdp = ("no cdp run")
-		print("\n" "enable" "\n" "configure terminal" "\n" + cdp)
+		print("\n" "enable" "\n" "configure terminal" "\n" + cdp + "\n" "Note: CDP is enabled by default")
 		copypaste_ask = input("\n" "Would you like to copy to clipboard? (Y/N): ").lower()
 		if copypaste_ask == str("y"):
 			copypaste.copy(cdp)
 		elif copypaste_ask == str("n"):
 			restart()
-
 	if userinput == ("port security"):	
 		port_sec_max = input("Max number of mac addresses allowed: ") 						
 		port_sec_maxmac = ("switchport port-security maximum " + str(port_sec_max))
@@ -154,7 +145,6 @@ def main():
 			copypaste.copy(port_security)
 		elif copypaste_ask == str("n"):
 			restart()
-
 	if userinput == ("speed"):	
 		speed_int = input("Insert the interface type (serial, gig, fa, eth, etc): ").lower()
 		speed_int = "interface " + str(speed_int)
@@ -166,7 +156,6 @@ def main():
 			copypaste.copy(speed)
 		elif copypaste_ask == str("n"):
 			restart()
-
 	if userinput == ("duplex"):	
 		duplexask = input("Full or half: ").lower()
 		duplex_int = input("Insert the interface type (serial, gig, fa, eth, etc): ").lower()
@@ -179,7 +168,6 @@ def main():
 			copypaste.copy(duplex)
 		elif copypaste_ask == str("n"):
 			restart()
-
 	if userinput == ("portfast"):
 		portfast = ("enable" "\n" "configure terminal" "\n" "spanning-tree portfast default ")
 		print(portfast)
@@ -188,7 +176,6 @@ def main():
 			copypaste.copy(portfast)
 		elif copypaste_ask == str("n"):
 			restart()
-
 	def aclcreator():
 		try:
 			acl_number = int(input("Input an access list number (1-99) or (100-199): "))
@@ -215,7 +202,6 @@ def main():
 		except (ValueError, TypeError, AttributeError):
 			print("Invalid inputs, try again ")
 			aclcreator()
-
 	if userinput == ("acl"):	
 			acl_list = aclcreator()
 			if acl_list[0] <= 99:
@@ -233,7 +219,6 @@ def main():
 				copypaste.copy(acl)
 			elif copypaste_ask == str("n"):
 				restart()
-
 	def natcreator():
 			try:
 				nat_ask = input("Create pool, or Translation?: ").lower()
@@ -285,7 +270,6 @@ def main():
 			except (ValueError, TypeError, AttributeError):
 				print("Invalid inputs, try again ")
 				aclcreator()
-
 	if userinput == ("nat"):	
 			nat = natcreator()
 			if nat[0] == str("pool"):
@@ -298,8 +282,7 @@ def main():
 			if copypaste_ask == str("y"):
 				copypaste.copy(nat)
 			elif copypaste_ask == str("n"):
-				restart()
-			
+				restart()	
 	def dhcpcreator():
 			try:
 				dhcp_pool_name = input("Input the name for the dhcp pool: ")
@@ -312,7 +295,6 @@ def main():
 			except (ValueError, TypeError, AttributeError):
 				print("Invalid inputs, try again ")
 				dhcpcreator()
-
 	if userinput == ("dhcp"):	
 			dhcp = dhcpcreator()
 			print(dhcp)
@@ -321,16 +303,12 @@ def main():
 				copypaste.copy(dhcp)
 			elif copypaste_ask == str("n"):
 				restart()
-
 	if userinput == ("help"):		
 		helptext = ("\n" "The commands include: ospf, ip, stp, vlans, password, port security, cdp, rip, speed, duplex, portfast, acl, nat, dhcp " "\n")
 		print(helptext)
 		main()
-
 	if userinput != list[str("ospf"), str("ip"), str("stp"), str("vlan"), str("passwords"), str("port security"), str("cdp"), str("rip"), str("speed"), str("duplex"), str("portfast"), str("acl"), str("nat"), str("dhcp")]:
 		if True:
 			restart()
-	
 	restart()	
-
 main()
